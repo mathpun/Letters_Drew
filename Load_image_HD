@@ -1,0 +1,11 @@
+% D4 is the original image 105 x 105 gray png -- imports as logical
+% PD4 is the participants image -- 500 x 500 jpeg RGB -- imports as uint8
+% want both gray logicals so convert PD4 to gray and logic
+
+
+D4 = imread('D4.png')
+PD4 = imread('part_1_D4.jpeg')
+PD4_BW = rgb2gray(PD4)
+PD4_Logic = logical(PD4_BW)
+itrain = D4
+itest = PD4_Logic
