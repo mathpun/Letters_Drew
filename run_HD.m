@@ -2,6 +2,11 @@
 % PD4 is the participants image -- 500 x 500 jpeg RGB -- imports as uint8
 % want both gray logicals so convert PD4 to gray and logic
 
+
+%On Eliza's computer 
+%folder_base = '/Users/cocosci/Desktop/H_All/Base Letters';
+%folder_part = '/Users/cocosci/Desktop/H_All/Part_1';
+
 folder_base = 'Base_Letters';
 folder_part = 'Part_1';
 
