@@ -16,12 +16,12 @@
 
 function cost = HD(itrain,itest)
     % Return distance (cost) between training (itrain) and test image (itest)
-    assert(UtilImage.check_black_is_true(itrain.img));
-    assert(UtilImage.check_black_is_true(itest.img));
-    [irow,icol] = find(itrain.img);
+    assert(UtilImage.check_black_is_true(itrain));
+    assert(UtilImage.check_black_is_true(itest));
+    [irow,icol] = find(itrain);
     dtrain = [irow icol];
     dtrain = normalize(dtrain);
-    [irow,icol] = find(itest.img);
+    [irow,icol] = find(itest);
     dtest = [irow,icol];
     dtest = normalize(dtest);
     cost = ModHausdorffDist(dtrain,dtest);
