@@ -1,0 +1,43 @@
+% This runs for all D's
+%chnage D to T for all T's!
+
+clear all;
+
+folder_base = '/Users/cocosci/Desktop/H_All/Base Letters';
+folder_part = '/Users/cocosci/Desktop/H_All';
+ 
+nparticipants = 10;
+nimages = 7;
+img_part = cell(nimages,nparticipants);
+hdmatrix = ones(nimages,nparticipants);
+
+for k = 1:nparticipants
+    for n = 1:nimages
+        filename = sprintf('/Users/cocosci/Desktop/H_All/Part_%d/Part_%d_D%d.jpeg', k,k,n);
+        
+        % base image
+        img_base = imread([folder_base,'/',sprintf('D%d.png',n)]);
+        img_base = double(img_base);
+        img_base = img_base ./ max(img_base(:));
+        img_base_logical = img_base < 0.5;
+        
+        if exist(filename,'file') ~= 0
+            img_part{n,k} = imread(filename);
+
+            img_part_tmp = img_part{n,k};
+
+            % resize and convert to grayscale        
+            img_part_tmp = rgb2gray(img_part_tmp);
+            img_part_tmp = imresize(img_part_tmp,size(img_base));
+
+            % make maximum value in both images be 1
+            img_part_tmp = img_part_tmp ./ max(img_part_tmp(:));
+
+            % convert to binary
+            img_part_logical = img_part_tmp < 0.5;
+
+            % compute distance
+            hdmatrix(n,k) = HD(img_base_logical,img_part_logical);
+        end
+    end
+end
